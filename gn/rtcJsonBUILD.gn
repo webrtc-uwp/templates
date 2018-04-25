@@ -1,6 +1,6 @@
-#In order to fix unresolved symbols from json libraries without changing webrtc GN files, 
-#the following code is appended during prepare stage, in bin/prepare.bat, 
-#to webrtc\xplatform\webrtc\webrtc\rtc_base\BUILD.gn 
+# In order to fix unresolved symbols from json libraries without changing webrtc GN files, 
+# the following code is appended during prepare stage, in bin/prepare.bat, 
+# to webrtc\xplatform\webrtc\webrtc\rtc_base\BUILD.gn 
 
 #APPEND BEGIN
 rtc_static_library("rtc_json_sl") {
