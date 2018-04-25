@@ -1,0 +1,24 @@
+#In order to fix unresolved symbols from json libraries without changing webrtc GN files, 
+#the following code is appended during prepare stage, in bin/prepare.bat, 
+#to webrtc\xplatform\webrtc\webrtc\rtc_base\BUILD.gn 
+
+#APPEND BEGIN
+rtc_static_library("rtc_json_sl") {
+  defines = []
+  sources = [
+    "json.cc",
+    "json.h",
+  ]
+  if (rtc_build_json) {
+    public_deps = [
+      "//third_party/jsoncpp",
+    ]
+  } else {
+    include_dirs = [ "$rtc_jsoncpp_root" ]
+
+    # When defined changes the include path for json.h to where it is
+    # expected to be when building json outside of the standalone build.
+    defines += [ "WEBRTC_EXTERNAL_JSON" ]
+  }
+}
+#APPEND END
