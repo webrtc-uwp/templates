@@ -15,6 +15,7 @@ group("idl") {
       "zsLib-eventing:zslib-eventing",
       "zsLib-eventing:zslib-eventing-tool",
       "zsLib:zslib",
+      "//sdk/windows:webrtc_idl",
     ]
 
     public_deps += [
