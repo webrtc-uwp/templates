@@ -1,0 +1,16 @@
+
+declare_args() {
+  tool_build_toolchain = ""
+  
+  if  (is_win) {
+    if (current_cpu != "arm" && current_cpu != "arm64") {
+      tool_build_toolchain = "//build/toolchain/win:$current_cpu"
+    } else if (target_os == "winuwp") {
+      tool_build_toolchain = "//build/toolchain/win:x64"
+    }else {
+      tool_build_toolchain = host_toolchain
+    }
+  } else {
+    tool_build_toolchain = host_toolchain
+  }
+}

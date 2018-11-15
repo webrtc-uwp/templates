@@ -7,19 +7,31 @@
 # be found in the AUTHORS file in the root of the source tree.
 
 
+import("//third_party/idl/tool_build.gni")
+
 # Target to build all the IDL production code.
 group("idl") {
     # Only the root target should depend on this.
 
+    if (is_win) {
+      if (target_os == "winuwp") {
+        zsLib_toolchain = "//build/toolchain/win:uwp_$current_cpu"
+      } else {
+        zsLib_toolchain = "//build/toolchain/win:$current_cpu"
+      }
+    } else {
+      zsLib_toolchain = default_toolchain
+    }
+    
     public_deps = [
-      "zsLib-eventing:zslib-eventing",
-      "zsLib-eventing:zslib-eventing-tool",
-      "zsLib:zslib",
-      "cryptopp:cryptopp",
+      "zsLib-eventing:zslib-eventing($zsLib_toolchain)",
+      "zsLib-eventing:zslib-eventing-tool($tool_build_toolchain)",
+      "zsLib:zslib($zsLib_toolchain)",
+      "cryptopp:cryptopp($zsLib_toolchain)",
       "//sdk/windows:webrtc_idl",
     ]
-
+    
     public_deps += [
-        "zsLib-eventing:zslib-eventing-tool-compiler($host_toolchain)",
+        "zsLib-eventing:zslib-eventing-tool-compiler($tool_build_toolchain)",
       ]
 }
