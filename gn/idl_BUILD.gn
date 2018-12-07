@@ -25,7 +25,6 @@ group("idl") {
     
     public_deps = [
       "zsLib-eventing:zslib-eventing($zsLib_toolchain)",
-      "zsLib-eventing:zslib-eventing-tool($tool_build_toolchain)",
       "zsLib:zslib($zsLib_toolchain)",
       "cryptopp:cryptopp($zsLib_toolchain)",
       "//sdk/windows:webrtc_idl",
