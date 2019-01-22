@@ -28,6 +28,7 @@ group("idl") {
       "zsLib:zslib($zsLib_toolchain)",
       "cryptopp:cryptopp($zsLib_toolchain)",
       "//sdk/windows:webrtc_idl",
+      "//sdk/windows:webrtc_wrapper_events",
     ]
     
     public_deps += [
